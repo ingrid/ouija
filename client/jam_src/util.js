@@ -14,29 +14,31 @@ lib.dataDir = "";
 
 // Loads and caches image files or sound files.
 lib.load = function(url, onload){
+  if(!url.startsWith('data:')){
     url = lib.dataDir + url;
-    if(lib.cache[url] !== undefined) {
-        onload(lib.cache[url]);
-        return;
-    }
+  }
+  if(lib.cache[url] !== undefined) {
+    onload(lib.cache[url]);
+    return;
+  }
 
-    onload = onload || function() {};
+  onload = onload || function() {};
 
-    var obj;
-    // IMAGE
-    if(url.match(/\.(jpeg|jpg|png|gif)(\?.*)?$/)){
-        obj = new Image(url);
-        obj.onload = function(){ onload(obj); };
-        obj.src = url;
-        lib.cache[url] = obj;
-    }
-    // SOUND
-    else if (url.match(/\.(mp3|ogg|wav)(\?.*)?$/)){
-        obj = new Audio();
-        obj.addEventListener("loadeddata", function(){ onload(obj); }, false);
-        obj.src = url;
-        lib.cache[url] = obj;
-    }
+  var obj;
+  // IMAGE
+  if(url.match(/\.(jpeg|jpg|png|gif)(\?.*)?$/) || url.startsWith('data:image')){
+    obj = new Image(url);
+    obj.onload = function(){ onload(obj); };
+    obj.src = url;
+    lib.cache[url] = obj;
+  }
+  // SOUND
+  else if (url.match(/\.(mp3|ogg|wav)(\?.*)?$/) || url.startsWith('data:audio')){
+    obj = new Audio();
+    obj.addEventListener("loadeddata", function(){ onload(obj); }, false);
+    obj.src = url;
+    lib.cache[url] = obj;
+  }
     return obj;
 };
 
@@ -123,4 +125,3 @@ lib.mixinOn = function(o) {
         };
     };
 }
-

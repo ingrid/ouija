@@ -1,6 +1,6 @@
 import Util from "./util";
 import Vector from "./vector";
-import Syl from "./lib/sylvester";
+import Syl from "../lib/sylvester";
 
 var sprite;
 
@@ -147,13 +147,16 @@ sprite.Animation = function(frames, rate, offsetX, offsetY, callback){
 // Loads an image; when it's finished loading, sets the sprite's image
 // to it. Automatically adjusts the sprite's width and height.
 sprite.prototype.setImage = function(url_or_obj, frameWidth, frameHeight){
-    var postLoad = function(obj){
+  var postLoad = function(obj){
+    console.log('postoad');
+    console.log(obj);
         this.image = obj;
         this.width = frameWidth || this.image.naturalWidth;
         this.height = frameHeight || this.image.naturalHeight;
     }.bind(this);;
+
     // Has 'complete' which means it's an image object.
-    if(url_or_obj.complete) {
+  if(url_or_obj.complete) {
         postLoad(url_or_obj);
     } else { // Otherwise we'll assume it's a url.
         Util.load(url_or_obj, postLoad);

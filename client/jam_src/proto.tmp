@@ -1,4 +1,4 @@
-import sprite from "./jam/sprite";
+import sprite from "../sprite";
 
 var DEFAULT_COLOR = "rgb(255, 255, 255)";
 

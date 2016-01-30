@@ -1,5 +1,5 @@
 import Util from "./util";
-import Syl from "./lib/sylvester";
+import Syl from "../lib/sylvester";
 
 var self;
 
@@ -29,8 +29,6 @@ self.overlap = function(s1, s2, callback){
   // Turn everything in a list to simplify comparison.
   var g1 = packRecursive(s1);
   var g2 = packRecursive(s2);
-  console.log('1');
-  console.log(s1);
   var returnValue = false;
   // Now loop through the two lists (n^2 LOL) and compare everything
   // TODO: Quadtree? :P
