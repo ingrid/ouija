@@ -1,5 +1,5 @@
 import jam from "../jam/jam";
-import { planchette } from "draw";
+import { planchette, board } from "draw";
 
 jam.config({dataDir:"data/"});
 var game;
@@ -18,10 +18,11 @@ var initialize = function(){
   game = window.game = new jam.Game(640, 480, document.body);
   scene = game.root.scene;
 
-  var p = new planchette(100, 100);
-  scene.add(p);
+  var b = new board(10, 10);
+  scene.add(b);
 
-  console.log(p.image);
+  var p = new planchette(500, 150);
+  scene.add(p);
 
   if (jam.Debug.showBoundingBoxes === true){
 	  //Debug

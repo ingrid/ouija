@@ -33,7 +33,6 @@ self.overlap = function(s1, s2, callback){
   // Now loop through the two lists (n^2 LOL) and compare everything
   // TODO: Quadtree? :P
   for(var i = 0; i < g1.length; ++i) {
-      console.log('2');
     for(var j = 0; j < g2.length; ++j) {
 
       var wsOffset1 = g1[i].getTransform().x(Syl.$V([0,0,1]));
@@ -48,8 +47,6 @@ self.overlap = function(s1, s2, callback){
       var y2 = g2[j]._collisionOffsetY + wsOffset2.elements[1];
       var w2 = g2[j].width + g2[j]._collisionOffsetWidth;
       var h2 = g2[j].height + g2[j]._collisionOffsetHeight;
-
-      console.log(x1, y1, w1, h1, x2, y2, w2, h2);
 
       // Detect overlap (maybe this should be overlapSingle)
       if ( x1 + w1 > x2 && y1 + h1 > y2 &&

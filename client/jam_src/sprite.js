@@ -148,8 +148,6 @@ sprite.Animation = function(frames, rate, offsetX, offsetY, callback){
 // to it. Automatically adjusts the sprite's width and height.
 sprite.prototype.setImage = function(url_or_obj, frameWidth, frameHeight){
   var postLoad = function(obj){
-    console.log('postoad');
-    console.log(obj);
         this.image = obj;
         this.width = frameWidth || this.image.naturalWidth;
         this.height = frameHeight || this.image.naturalHeight;
